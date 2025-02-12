@@ -3,8 +3,8 @@ package com.example.demo.controllers;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Student;
+import com.example.demo.services.StudentService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,103 +26,60 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class StudentController {
 
 	//private final Student student ;
-	private List<Student> students ;
-	
-	public StudentController ()
+
+	private final StudentService studentService ;
+
+	public StudentController (StudentService studentService )
 	{
-		//this.student = student;
-		this.students = new ArrayList<Student>();
+		this.studentService = studentService;
 	}
-	
-	
-	
-	
-	
+
+
 	// input id , out the student data
 	@GetMapping("/read")
 	public Optional<Student> getMethodApi(@RequestParam String id) {
-		
-		for (Student std : students)
-		{
-			System.out.println("Std: "+ std);
-			 if (std.getId().equals(id)) 
-				 return Optional.of(std);
-		}
-		return Optional.empty();
+
+		return studentService.getStudent(id);
 	}
-	
+
 	@PostMapping("/create")
 	public String postMethodApi(@RequestBody Student student) {
+		return studentService.addStudent(student);
+	}
 
-		if (!students.stream().anyMatch(s -> s.getId().equals(student.getId()))) 
-		{
-		students.add(student);
-		return "Student added: ".concat(student.getId());	
-		}
-		else 
-			return "this id: "+ student.getId()+" exists";
-		}
-	
-	
-	
-	
-	
+
+
+
+
 	@PutMapping("update/{name}/{id}")
 	public Optional<Student> updateNameMethodApi(@PathVariable String name, @PathVariable String id) {
-		
-		for (Student std : students)
-		{
-			 if (std.getId().equals(id)) 
-			 {
-				 std.setName(name);
-				 return Optional.of(std);
-			 }
-			 }
-		
-		return  Optional.empty();
-		
-		
+
+		return studentService.updateStudentName(name, id);
+
 	}
-	
+
 	@DeleteMapping("delete/{id}")
 	public String deleteNameMethodApi(@PathVariable String id) {
-		
-		for (Student std : students)
-		{
-			 if (std.getId().equals(id)) 
-			 {
-				 students.remove(std);
-				 return "ID: "+ id + " removed";
-			 }
-			 }
-		
-		return  "Id Not Found";
-		
-		
+
+		return studentService.deleteStudent(id);
 	}
-	
-	
+
+
 	@GetMapping("findfirst")
 	public Optional<Student> getFirstMethodApi() {
-		
-		if (!students.isEmpty())
-			return Optional.of(students.get(0));
 
-			return Optional.empty();
+		return studentService.getFirstStudent();
 	}	
-	
-	
+
+
 	@GetMapping("findall")
 	public Optional<List<Student>> getAllStdMethodApi() {
-		
-		if (!students.isEmpty())
-			return Optional.of(students) ;
 
-			return Optional.empty();
+		return studentService.displayAllStudents();
 	}	
-	
-	
-	
-	
-	
+
+
+
+
+
 }
