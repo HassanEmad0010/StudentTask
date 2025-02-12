@@ -37,8 +37,8 @@ public class StudentController {
 
 	// input id , out the student data
 	@GetMapping("/read")
-	public Optional<Student> getMethodApi(@RequestParam String id) {
-
+	public Optional<Student> getMethodApi(@RequestParam int id) {
+		
 		return studentService.getStudent(id);
 	}
 
@@ -48,18 +48,23 @@ public class StudentController {
 	}
 
 
+	/*
+	 * @PostMapping("/insertindb") public int insertInDb(@RequestBody Student
+	 * student) { return studentService.insertStudentDb(student.getId(),
+	 * student.getName(),student.getAge(),student.getEmail()); }
+	 */
 
 
 
 	@PutMapping("update/{name}/{id}")
-	public Optional<Student> updateNameMethodApi(@PathVariable String name, @PathVariable String id) {
+	public Optional<Student> updateNameMethodApi(@PathVariable String name, @PathVariable int id) {
 
 		return studentService.updateStudentName(name, id);
 
 	}
 
 	@DeleteMapping("delete/{id}")
-	public String deleteNameMethodApi(@PathVariable String id) {
+	public String deleteNameMethodApi(@PathVariable int id) {
 
 		return studentService.deleteStudent(id);
 	}

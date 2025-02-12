@@ -6,8 +6,9 @@ import java.util.Objects;
 //@Component
 public class Student {
 
-	private String id, name, age, email;
-
+	private int id;
+	private String name, email;
+	private int age;
 	
 	
 	public Student() {
@@ -21,11 +22,11 @@ public class Student {
 	 * id; this.name = name; this.age = age; this.email = email; }
 	 */
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -37,11 +38,11 @@ public class Student {
 		this.name = name;
 	}
 
-	public String getAge() {
+	public int getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 
@@ -75,6 +76,11 @@ public class Student {
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", age=" + age + ", email=" + email + "]";
 	}
+
+
+
+
+
 	
 	
 	
