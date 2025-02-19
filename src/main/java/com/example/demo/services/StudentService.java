@@ -28,8 +28,6 @@ public StudentService(JdbcTemplate jdbcTemplate) {
 
 
 
-
-
 public boolean importFromDb()
 	{
     String sql = "SELECT * FROM students_table";
