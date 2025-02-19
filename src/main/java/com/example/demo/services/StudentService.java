@@ -76,11 +76,12 @@ public int deleteStudentDb(int id) {
   return jdbcTemplate.update(sql, id);
 }
 
-
+//work on DB directly 
 public int updateStudentDb(String name , int id) {
     String sql = "UPDATE students_table SET name = ? WHERE id = ?";
     return jdbcTemplate.update(sql,name, id);
 }
+
 
 
 public Optional<Student> getStudent(final int id) {

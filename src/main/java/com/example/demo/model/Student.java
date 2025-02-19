@@ -1,17 +1,22 @@
 package com.example.demo.model;
 
 import java.util.Objects;
+import com.example.demo.beans.Address;
 
 
-//@Component
 public class Student {
 
 	private int id;
 	private String name, email;
 	private int age;
 	
+	//injecting address in student
+	private Address address;
+	
+	
 	
 	public Student() {
+	
 	System.out.println("Student Constructor");
 	
 	}
@@ -78,6 +83,15 @@ public class Student {
 	}
 
 
+	public Address getAddress() {
+		return address;
+	}
+
+
+	
+	public Address setAddress(Address address) {
+		return  address;
+	}	
 
 
 
